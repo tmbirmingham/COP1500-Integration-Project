@@ -1,218 +1,306 @@
-# Timothy Birmingham CRN 80597
-# Quiz game that will ask questions related to Python
-# Inspiration drawn from group in class
+# Tim Birmingham
+# Quiz game for COP 1500
 
-print(
-    "Hello and welcome to the quiz of COP 1500!")  # printing the welcome statements and introducing myself. by using
-# print() I can type out what I want to display to the shell
-print("I am your host Tim!")
-print("Throughout this game, I will ask questions about some of the functions we have covered in COP 1500.")
-player_name = input(
-    "Please enter name of player: ")  # By assigning the variable player_name with an input statement, I can have the
-# user input a name for me to store in the location known as "player_name"
-print(player_name, "thank you for playing today!", sep=', ')
-print("Without further ado, let's get right into the questions!")
-print(
-    "=================================================================================================================================================================================================================================")
-# I did this line for formatting purposes ^ I understand there are probably easier ways to change the look of the output, but for now I went with this as well as printing a large amount of spaces later on
+# Creating a function to progress the game when player is ready to continue
+def ready_to_move_on():
+    """Tim Birmingham"""
+    want_to_continue = False
+    check_loop = input("Type 'READY' when you want to continue. ANYTHING OTHER THAN 'ready or READY' will end game. ")
+    if (check_loop == "READY") or (check_loop == "ready"):
+        want_to_continue = True
+    return want_to_continue
 
-# keep track of score throughout the game, start at 0
-player_score = 0  # I had a hard time figuring out how to do a running scoreboard but after many different things tried I think this simple counting works
-# tyler pointed out to me that the variable name updates with the most recent actions done to it
 
-# Question 1- exponentation operator with numbers
-print("Question 1", end=':')  # by using the end= function, I can format the way that I want the lines to be printed
-print("When performing a calculation using basic numeric operators, what does ** do?",
-      "Is it (A) Divide (B) Assign (C) Exponentation (D) All of the above")
-question_one = input("Please type answer as capital letter: ")
+def test(stop_or_go):
+    if stop_or_go == False:
+        exit()
 
-# if and else statements check to see whether or not a certain criteria are met and depending on whether or not it is met, has multiple paths that the code can go
-# if the value is true, it will execute the code under the if. Alternatively, if the value is false, it will execute the code under the else.
-if question_one == "C":
-    print("Very good! +1 point to", player_name, sep=' ')
-    player_score = player_score + 1  # by using the same variable name, the score will keep a running total of the points that the player has
 
-else:
-    print("No, I'm sorry that is incorrect")
-    player_score = player_score + 0  # no points are awarded for incorrect answers, not entirely sure if I needed to define that, but I figured it was better safe than sorry
+# defining main, will call to it later
+def main():
+    """
+    Author
+    Tim Birmingham
+    """
+    print("Welcome to the quiz game of COP 1500!")
+    print("It is a short multiple choice quiz with questions about the programming language python")
+    print("Our goal here is to have some fun and learn a little about python along the way")
 
-print("The ** operator represents exponentation. This means by using ** you can raise a variable (x) to a power (y).")
-print("The score is as follows:", player_name, player_score, "point(s)!",
-      sep=' ')  # using the sep= function, I can format the way I want a series of strings to be set up
-print("Moving along now")
-print(
-    "                                                                                                                                                                                                                                  ")
-# The line above is the print statement with a bunch of spaces to format the output into a more user friendly manner
+    # Printing a new line to make the output look nicer and easier to read
+    print('\n')
+    player_name = input("Please enter your name: ")
+    print(player_name, "thanks for playing today!", sep=',')
+    user_choice = ready_to_move_on()
+    test(user_choice)
+    print("\n")
 
-# question 2- addition operator with numbers
-print("When performing a calculation using basic numeric operators, what does + do?",
-      "Is it (A) Addition (B) Subtraction (C) Integrate (D) None of the above.")
-question_two = input("Please type answer as capital letter: ")
+    # initialize the scoreboard to be 0 so that accurate count can be made
+    player_score = 0
 
-if question_two == "A":
-    print("Holy smokes, you're good! +1 point to", player_name, sep=' ')
-    player_score = player_score + 1
-else:
-    print("hmmm, not the answer I was looking for. The correct answer is A, Addition.")
-    player_score = player_score + 0
+    # QUESTION 1
+    print(" QUESTION 1: When performing a calculation using basic numeric operators, what does '**' do?")
+    question = input("(A) Divide (B) Assign (C) Exponentiation (D) All of the above ")
+    # using comparison operators to check if the answer is correct
+    # using an if else statement to determine what to do if the answer is correct and if the answer is incorrect
+    if question == "C" or question == "c":
+        print("Holy smokes! +1 point")
+        player_score = player_score + 1
+    else:
+        print("Good guess, but no.")
+    print("The ** operator represents exponentiation. This means by using ** you can raise a variable"
+          " (x) to a power (y).")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-print("The operator + represents addition. This means you can add variables together x + y.")
-print("Score so far is:", player_name, player_score, "point(s)!", sep=' ')
-print("Let's see what other questions we have in store tonight.")
-print(
-    "                                                                                                                                                                                                                                  ")
+    # QUESTION 2
+    print("QUESTION 2: When performing a calculation using basic numeric operators, what does + do?")
+    question = input("(A) Addition (B) Subtraction (C) Integrate (D) None of the above ")
+    if question == "A" or question == "a":
+        print("Nice job!", player_name, sep=' ')
+        player_score = player_score + 1
+    else:
+        print("Sorry, that is not the answer I was looking for.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-# Question number 3- assignment operator with numbers
-print("In the real world, = means equals, but in python world, = means which of the following?",
-      "Is it (A) Calculate (B) Launch (C) Assignment (D) Configure", sep=' ')
-question_three = input("Please type answer as a capital letter: ")
+    # QUESTION 3
+    print("QUESTION 3: What does = mean in Python language?")
+    question = input("(A) Calculate (B) Launch (C) Assignment (D) Configure ")
+    if question == "C" or question == "c":
+        print("Holy smokes! +1 point")
+        player_score = player_score + 1
+    else:
+        print("Good guess, but no.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-if question_three == "C":
-    print("WOWWEEE!! Good job", player_name, "Add another point to your score", sep=", ")
-    player_score = player_score + 1
+    # some questions include an optional example to further explain the concept asked about in the question
+    # QUESTION 4
+    print("QUESTION 4: What does the % operator do in python?")
+    question = input("(A) Percentage (B) Modulus (C) Subtract (D) None of the above ")
+    if question == "B" or question == "b":
+        print("I thought this was an amateur quiz... +1 point!")
+        player_score = player_score + 1
+    else:
+        print("Incorrect.")
+    print("The modulus operator (%) in python is used to give the remainder that is left over when dividing, x % y")
+    example = input("Want an example? ")
+    if example == "YES" or example == "yes":
+        try:
+            number1 = int(input("Enter a number: "))
+            number2 = int(input("Enter another number: "))
+            print(number1 % number2)
+        except:
+            print("ERROR OCCURRED. QUIZ WILL CONTINUE WITHOUT EXAMPLE, SORRY FOR INCONVENIENCE.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-else:
-    print("Incorrect, don't be too disappointed there is still a lot of game to be played!")
-    player_score = player_score + 0
+    # if the user answers C on this question, it will take them to an explanation of the concept
+    # QUESTION 5
+    print("QUESTION 5: When working with strings, what does the * operator do?")
+    question = input("(A) Repetition (B) Concatenation (C) Not sure (D) None of the above ")
+    if question == "A" or question == "a":
+        print("Nice job!", player_name, sep=' ')
+        player_score = player_score + 1
+    elif question == "C":
+        print("Sorry, that is not the answer I was looking for")
+        print("Let's see an example for this one")
+        words = input("Please enter a word: ")
+        number_example = int(input("Please enter a number: "))
+        print(words * number_example)
+        print("The * when working with strings will repeat the string multiple times in a row.")
+    else:
+        print("Sorry, that is not the answer I was looking for")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-print(
-    "The operator = in python language represents assingment. This is used when assigning a value to a variable x = 1.")
-print("The score so far is", player_name, player_score, "point(s)!", sep=' ')
-print(
-    "                                                                                                                                                                                                                                  ")
+    # QUESTION 6
+    print("QUESTION 6: When working with numbers, what does the * operator do?")
+    question = input("(A) Adds numbers (B) Subtracts numbers (C) Changes the datatype (D) Multiplies numbers ")
+    if question == "D" or question == "d":
+        print("Okay who told you all the answers? +1 point")
+        player_score = player_score + 1
+    else:
+        print("Don't fret, still more questions to come")
+    print("The * multiplies numbers together: x * y")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-# Question number 4- modulus operator with numebers
-print("For this question, we are looking to see what happens when we use the % operator in numeric calculations",
-      "Is it (A) Percentage (B) Modulus (C) Subtract (D) Skip.", sep=', ')
-question_four = input("Please enter answer as a capital letter: ")
+    # QUESTION 7
+    print("QUESTION 7: The operator for dividing numbers is which of the following")
+    question = input("(A) // (B) λ (C) <= (D) / ")
+    if question == "D" or question == "d":
+        print("Okay who told you all the answers? +1 point")
+        player_score = player_score + 1
+    else:
+        print("Don't fret, still more questions to come")
+    print("The / is used for regular division when dealing with numbers: x / y")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-if question_four == "B":
-    print("You my friend are on a roll", player_name, "Another +1", sep=', ')
-    player_score = player_score + 1
+    # QUESTION 8
+    print("QUESTION 8: What does the numeric operator // represent?")
+    question = input("(A) Division (B) Multiplication (C) Floor Division (D) All of the above ")
+    if question == "A" or question == "a":
+        print("Nice job!", player_name, sep=' ')
+        player_score = player_score + 1
+    else:
+        print("Sorry, that is not the answer I was looking for")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-else:
-    print("Wrong... That's okay, everyone loves an underdog!")
-    player_score = player_score + 0
+    # QUESTION 9
+    print("QUESTION 9: When dealing with strings, what does the + operator do?")
+    question = input("(A) Adds them (B) Concatenates them (C) Multiplies them (D) Divides them ")
+    if question == "B" or question == "b":
+        print("I thought this was an amateur quiz... +1 point!")
+        player_score = player_score + 1
+    else:
+        print("Incorrect.")
+    print("Concatenation takes two or more strings and links them together")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-print(
-    "The % or modulus operator, when used in python, gives the user the remainder that is given when the left hand operand is divided by the right hand operand x % y.")
-print("The score so far is", player_name, player_score, "point(s)!", sep=' ')
-print("Next question!")
-print(
-    "                                                                                                                                                                                                                                  ")
+    # QUESTION 10
+    print("QUESTION 10: What is the numeric operator for subtraction in python?")
+    question = input("(A) = (B) - (C) + (D) * ")
+    if question == "B" or question == "b":
+        print("I thought this was an amateur quiz... +1 point!")
+        player_score = player_score + 1
+    else:
+        print("Incorrect.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-# question number 5- repetition operator with strings
-print("Question number 5: When working with strings, what does the * operator do?",
-      "Is it (A) Repetition (B) Concatenation (C) Not sure (D) None of the above")
-question_five = input("Please type answers as a capital letter: ")
+    # QUESTION 11
+    print("QUESTION 11: The > means that the left side is greater than the right side, x > y.")
+    print("(A) True (B) False")
+    question = input("A FOR TRUE B FOR FALSE. ")
+    if question != "B" or question == "b":
+        print("Nice job! + 1 point to", player_name)
+        player_score = player_score + 1
+    else:
+        print("Sorry, incorrect.")
+    print("Just like in math, the > means that the left side is greater than the right side")
+    print("An example would be 10 > 3")
+    print("The same goes for other comparison operators: < > == != >= <=")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-if question_five == "A":
-    print("Alright, who gave you the answer key?", "Very good +1 point", sep=' ')
-    player_score = player_score + 1
-else:
-    print("Negative. Good try though!")
-    player_score = player_score + 0
+    # QUESTION 12
+    print("QUESTION 12: The boolean operator 'AND' requires only one of the arguments to be correct to be True?")
+    print("(A) True (B) False")
+    question = input("A FOR TRUE B FOR FALSE. ")
+    if question != "B" or question != "b":
+        print("Nice job! + 1 point to", player_name)
+        player_score = player_score + 1
+    else:
+        print("Sorry, incorrect.")
+    print("The 'AND' operator requires both arguments to be correct in order for the statement to be True.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-print(
-    "Working with strings is a little different than other datatypes, the * operator when working with strings means repetition, useful if you wanted to print something many times!")
-print("Many times!" * 3)
-print("The score so far is", player_name, player_score, "point(s)!", sep=' ')
-print(
-    "We are now in our second half of the game, if you are doing well, good job! If you were hoping to do better, here is your chance!")
-print(
-    "                                                                                                                                                                                                                                  ")
+    # QUESTION 13
+    print("QUESTION 13: The boolean operator 'OR' requires only one of the arguments to be correct to be True?")
+    print("(A) True (B) False")
+    question = input("A FOR TRUE B FOR FALSE. ")
+    if question != "B" or question != "b":
+        print("Nice job! + 1 point to", player_name)
+        player_score = player_score + 1
+    else:
+        print("Sorry, incorrect.")
+    print("The 'OR' operator requires only one of the arguments to be correct in order for the statement to be True.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-# question number 6- multiplication operator with numbers
-print("Question number 6 goes back to numeric operators. When using the * operator, what does it do?",
-      "(A) Adds the two numbers (B) Subtracts the two numbers (C) Changes the datatype of the numbers (D) Multiplies the numbers")
-question_six = input("Please enter answer as a capital letter: ")
+    # QUESTION 14
+    print("QUESTION 14: The boolean operator 'NOT' requires neither of the arguments to be correct to be True?")
+    print("(A) True (B) False")
+    question = input("A FOR TRUE B FOR FALSE. ")
+    if question != "B" or question != "b":
+        print("Nice job! + 1 point to", player_name)
+        player_score = player_score + 1
+    else:
+        print("Sorry, incorrect.")
+    print("The 'NOT' operator requires neither of the arguments to be correct in order for the statement to be True.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-if question_six == "D":
-    print("I thought this was an amateur quiz...", "Good job,", player_name, "+1 point", sep=' ')
-    player_score = player_score + 1
+    # QUESTION 15
+    print("QUESTION 15: Can you use a loop to make an inverted triangle?")
+    print("(A) Yes (B) No")
+    question = input("A for Yes B for No. ")
+    if question != "B" or question != "b":
+        print("Yes +1 point")
+        player_score = player_score + 1
+    else:
+        print("Wrong, you can!")
+    print("using a nested loop, it is possible to create an inverted triangle")
+    print("\n")
+    question = input("Want to see an inverted triangle? ")
+    if question == "yes" or question == "YES":
+        rows = int(input("Enter a number in between 3 and 15: "))
+        print("\n")
+        for height in range(1, rows + 1):
+            accumulator = 0
+            rows = rows - 1
+            for length in range(rows + 1):
+                print(accumulator + 1, end=" ")
+                accumulator = accumulator + 1
+            print()
+    else:
+        print("Ha, your loss.")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-else:
-    print("Hang tight", player_name, "we're almost done for the day.", sep=', ')
-    player_score = player_score + 0
+    # QUESTION 16
+    print("QUESTION 16: What do the three numbers in a range function do?")
+    question = input("(A) Start (B) Stop (C) Step (D) All of the above ")
+    if question == "D" or question == "d":
+        print("Okay who told you all the answers? +1 point")
+        player_score = player_score + 1
+    else:
+        print("Don't fret, still more questions to come")
+    print(
+        "The range() function returns a sequence of numbers, starting at 0 and going to the specified number by 1 step")
+    print("For example, if you were to say 'for x in range(1,9,3)' it would count from 1 to 9 in intervals of 3")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-print(
-    "This was a tough one, I threw it in right after the string version of it to confuse you. The * operator when dealing with numbers in python simply multiplies them x * y.")
-print("The score to this point is", player_name, player_score, "point(s)!", sep=' ')
-print("Next question!")
-print(
-    "                                                                                                                                                                                                                                  ")
+    # QUESTION 17
+    print("QUESTION 17: Can you write a program to calculate area and circumference of a circle?")
+    question = input("(A) Yes (B) No (C) Only on the third Monday of the month. ")
+    if question == "A" or question == "a":
+        print("You're really good at this game, +1 point")
+        player_score = player_score + 1
+    else:
+        print("sorry, incorrect.")
+    print("It is possible to write a program to find the circumference and area of a circle using parameter passing")
+    print("\n")
+    user_choice = ready_to_move_on()
+    test(user_choice)
 
-# question number 7- division operator with numbers
-print("The numeric operator for division is which of the following?", "Is it (A) // (B) <= (C) λ (D) /")
-question_seven = input("Please enter answer as a capital letter: ")
+    # WRAP UP THE GAME
+    print("Well, we would like to thank you for playing today", player_name)
+    print("The final score of the game is", player_name + ":", player_score, "Point(s)!")
+    print("I hope you enjoyed your time here and maybe learned a thing or two")
+    print("Until next time, have a good night.")
 
-if question_seven == "D":
-    print("*sighs* Nice", "another +1 point for", player_name, sep=' ', end='. ')
-    player_score = player_score + 1
 
-else:
-    print("Sorry, no", end='. ')
-    player_score = player_score + 0
-
-print("The operator / represents division and allows two numbers to be divided into eachother x / y.")
-print("The score to this point is", player_name, player_score, "point(s)!", sep=' ')
-print("Two questions left, let's keep rolling!")
-print(
-    "                                                                                                                                                                                                                                  ")
-
-# question number 8- floor division operator
-print("The numeric operator // represents what? ", "(A) Division (B) Multiplication (C) Floor Division (D) Integration")
-question_eight = input("Please enter answer as a capital letter: ")
-
-if question_eight == "C":
-    print("Nice!! Good!! Excellent!!", "+1 point", player_name, sep=' ')
-    player_score = player_score + 1
-
-else:
-    print("Well if you wanted to get that one wrong, you did a great job!")
-    player_score = player_score + 0
-
-print(
-    "Floor division is slightly different from regular division in that it takes the answer and rounds it down to the whole number.")
-print("The score so far is", player_name, player_score, "point(s)!", sep=' ')
-print("Continuing on...")
-print(
-    "                                                                                                                                                                                                                                  ")
-
-# question number 9- concatenation with strings
-print("Coming back to string datatypes, what does the + do when dealing with strings?",
-      "Is it (A) Adds them (B) Concatenates them (C) Multiplies them (D) Divides them")
-question_nine = input("Please enter answer as a capital letter: ")
-
-if question_nine == "B":
-    print("Good job. 🍪 Here is a cookie.. oh and +1 point")
-    player_score = player_score + 1
-
-else:
-    print("Didn't get that one? Don't trip chocolate chip, we still have one more question left.")
-    player_score = player_score + 0
-
-print(
-    "When working with string datatypes, concatenation is the process of making a new string from the two separate strings before.")
-print("Going into the final round, the scores are", player_name, player_score, "point(s)!", sep=' ')
-print("Going into our final stretch, last question, lets make it count!")
-print(
-    "                                                                                                                                                                                                                                  ")
-
-# question number 10- subtraction operator with numbers
-print(
-    "Last question of the day here, deals with numeric values again, what is the numeric operator for subtraction in python?",
-    "Is it (A) = (B) - (C) + (D) *")
-question_ten = input("Please enter answer as a capital letter: ")
-
-if question_ten == "B":
-    print("Congratulations!", player_name, "+1", sep=' ')
-    player_score = player_score + 1
-else:
-    print("Shame we couldn't finish the last one with a right answer but thats okay!")
-    player_score = player_score + 0
-
-print(
-    "The operator for subtraction when dealing with numeric values is -, it allows a number to be subtracted from another, x - y.")
-print("Thank you for playing today, the final score is as follows:", player_name, player_score, "point(s)!",
-      sep=' ')  # output of final score and thanks for playing
+main()
